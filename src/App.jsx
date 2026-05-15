@@ -446,7 +446,7 @@ const shuffle = (arr) => {
   return a
 }
 
-const getQuestions = () => shuffle(ALL_QUESTIONS).slice(0, 20)
+const getQuestions = () => shuffle(ALL_QUESTIONS)
 
 // ── Estrelas decorativas ────────────────────────────────────────────
 const STAR_DATA = Array.from({ length: 55 }, (_, i) => ({
@@ -564,7 +564,7 @@ export default function SpaceQuiz() {
             </div>
 
             <p className="end-msg">{msgs[starCount - 1]}</p>
-            <p className="end-info">Banco com {ALL_QUESTIONS.length} questões · 20 sorteadas por rodada</p>
+            <p className="end-info">{ALL_QUESTIONS.length} questões embaralhadas a cada rodada</p>
 
             <button className="restart-btn" onClick={restart}>
               <RefreshCw size={15} aria-hidden="true" />
