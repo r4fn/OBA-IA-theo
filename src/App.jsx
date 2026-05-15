@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { CheckCircle, XCircle, Star, Trophy, RefreshCw, ChevronRight, Rocket } from 'lucide-react'
 import './App.css'
 
-const QUESTIONS = [
+const ALL_QUESTIONS = [
+  // ── Questões originais (1-20) ──────────────────────────────────
   {
     id: 1, category: 'Astronomia',
     question: 'Quantos planetas tem o Sistema Solar?',
@@ -125,7 +126,7 @@ const QUESTIONS = [
     question: 'A Terra tem quantas luas naturais?',
     options: ['Duas luas', 'Três luas', 'Uma lua', 'Quatro luas', 'Nenhuma lua'],
     correct: 2,
-    explanation: 'A Terra tem apenas 1 lua natural. Mas também temos milhares de satélites artificiais (feitos pelo homem) em órbita!'
+    explanation: 'A Terra tem apenas 1 lua natural. Mas também temos milhares de satélites artificiais em órbita!'
   },
   {
     id: 17, category: 'Astronáutica',
@@ -166,9 +167,288 @@ const QUESTIONS = [
     ],
     correct: 2,
     explanation: 'A contagem regressiva (5, 4, 3, 2, 1... Lançar!) avisa a todos que o lançamento está próximo e que ninguém deve entrar na área!'
-  }
+  },
+
+  // ── Novas questões (21-50) ──────────────────────────────────────
+  {
+    id: 21, category: 'Astronomia',
+    question: 'Qual planeta tem o dia mais curto do Sistema Solar?',
+    options: ['Terra', 'Marte', 'Saturno', 'Júpiter', 'Netuno'],
+    correct: 3,
+    explanation: 'Júpiter tem o dia mais curto: apenas 9,9 horas! Ele gira muito rápido ao redor do próprio eixo.'
+  },
+  {
+    id: 22, category: 'Astronomia',
+    question: 'Qual planeta tem o dia mais longo do Sistema Solar?',
+    options: ['Marte', 'Mercúrio', 'Urano', 'Saturno', 'Netuno'],
+    correct: 1,
+    explanation: 'Mercúrio tem o dia mais longo: 4.222 horas! Isso porque ele gira muito devagar ao redor do próprio eixo.'
+  },
+  {
+    id: 23, category: 'Astronomia',
+    question: 'Quantas direções cardeais principais existem?',
+    options: ['2', '3', '4', '5', '6'],
+    correct: 2,
+    explanation: 'As 4 direções cardeais são: Norte (N), Sul (S), Leste (L) e Oeste (O)!'
+  },
+  {
+    id: 24, category: 'Astronomia',
+    question: 'Para qual lado o Sol sempre se põe (se esconde)?',
+    options: ['Norte', 'Leste', 'Sul', 'Nordeste', 'Oeste'],
+    correct: 4,
+    explanation: 'O Sol sempre se põe do lado Oeste (O). E sempre nasce do lado Leste (L)!'
+  },
+  {
+    id: 25, category: 'Astronomia',
+    question: 'Qual constelação aparece na bandeira do Brasil?',
+    options: ['Órion', 'Ursa Maior', 'Cruzeiro do Sul', 'Escorpião', 'Sagitário'],
+    correct: 2,
+    explanation: 'O Cruzeiro do Sul (Crux) é uma constelação do hemisfério sul que aparece na bandeira do Brasil!'
+  },
+  {
+    id: 26, category: 'Astronomia',
+    question: 'Como se chama a galáxia onde vivemos?',
+    options: ['Andrômeda', 'Via Láctea', 'Magalhães', 'Centauro', 'Olho Negro'],
+    correct: 1,
+    explanation: 'Vivemos na galáxia Via Láctea! Ela contém bilhões de estrelas, incluindo o nosso Sol.'
+  },
+  {
+    id: 27, category: 'Astronomia',
+    question: 'O que é um cometa?',
+    options: [
+      'Uma estrela cadente',
+      'Um meteorito que cai na Terra',
+      'Um corpo de gelo e poeira com cauda luminosa',
+      'Um asteroide gigante',
+      'Um satélite natural'
+    ],
+    correct: 2,
+    explanation: 'Um cometa é feito de gelo e poeira. Quando se aproxima do Sol, o calor faz o gelo evaporar, formando uma bela cauda luminosa!'
+  },
+  {
+    id: 28, category: 'Astronomia',
+    question: 'Qual foi o primeiro animal enviado ao espaço?',
+    options: [
+      'Um macaco chamado Ham',
+      'Um gato chamado Félix',
+      'Uma cadela chamada Laika',
+      'Um camundongo',
+      'Uma tartaruga'
+    ],
+    correct: 2,
+    explanation: 'Laika foi uma cadela soviética que viajou ao espaço em 1957 a bordo do Sputnik 2 — o primeiro ser vivo em órbita!'
+  },
+  {
+    id: 29, category: 'Astronomia',
+    question: 'O que é uma nebulosa?',
+    options: [
+      'Um tipo de planeta',
+      'Uma estrela muito brilhante',
+      'Uma nuvem de gás e poeira no espaço',
+      'Um cometa grande',
+      'Uma galáxia pequena'
+    ],
+    correct: 2,
+    explanation: "Nebulosas são nuvens de gás e poeira no espaço. Muitas são 'berçários de estrelas' — locais onde novas estrelas nascem!"
+  },
+  {
+    id: 30, category: 'Astronomia',
+    question: 'Qual é o nome do movimento da Terra ao redor do Sol?',
+    options: ['Rotação', 'Translação', 'Gravitação', 'Orbitação', 'Revolução do eixo'],
+    correct: 1,
+    explanation: 'A Translação é o movimento da Terra ao redor do Sol e dura 365 dias (1 ano). Já a Rotação é o giro ao redor do próprio eixo!'
+  },
+  {
+    id: 31, category: 'Astronomia',
+    question: 'Qual é o nome do movimento da Terra ao redor do próprio eixo?',
+    options: ['Translação', 'Gravitação', 'Rotação', 'Orbitação', 'Revolução solar'],
+    correct: 2,
+    explanation: 'A Rotação é o giro da Terra ao redor do próprio eixo. Ela dura cerca de 24 horas e é responsável pelo dia e pela noite!'
+  },
+  {
+    id: 32, category: 'Astronomia',
+    question: 'Por que ocorrem as estações do ano (verão, outono, inverno e primavera)?',
+    options: [
+      'Porque a Terra se aproxima e se afasta do Sol',
+      'Porque o eixo da Terra é inclinado enquanto ela orbita o Sol',
+      'Porque a Lua muda de fase ao longo do ano',
+      'Porque os planetas bloqueiam o Sol periodicamente',
+      'Porque o Sol fica mais quente em alguns meses'
+    ],
+    correct: 1,
+    explanation: 'As estações do ano ocorrem porque o eixo da Terra é inclinado. Assim, diferentes partes recebem mais ou menos luz solar ao longo do ano!'
+  },
+  {
+    id: 33, category: 'Astronomia',
+    question: 'O que é uma "estrela cadente"?',
+    options: [
+      'Uma estrela que está morrendo',
+      'A Lua caindo no horizonte',
+      'Um meteoro: fragmento de rocha que brilha ao entrar na atmosfera',
+      'Um cometa passando perto da Terra',
+      'Um satélite artificial caindo'
+    ],
+    correct: 2,
+    explanation: 'Estrelas cadentes são meteoros — fragmentos de rocha que entram na atmosfera e queimam pelo atrito com o ar, formando um risco de luz!'
+  },
+  {
+    id: 34, category: 'Astronomia',
+    question: 'O que mantém os planetas em órbita ao redor do Sol?',
+    options: ['O vento solar', 'A luz do Sol', 'A gravidade do Sol', 'O magnetismo', 'A velocidade deles'],
+    correct: 2,
+    explanation: 'É a gravidade do Sol que mantém todos os planetas em órbita! A mesma força que faz uma maçã cair no chão segura os planetas no espaço.'
+  },
+  {
+    id: 35, category: 'Astronomia',
+    question: 'Qual instrumento os astrônomos usam para observar astros distantes?',
+    options: ['Microscópio', 'Binóculo', 'Telescópio', 'Periscópio', 'Caleidoscópio'],
+    correct: 2,
+    explanation: 'O telescópio permite enxergar astros muito distantes! Existem telescópios em terra e no espaço, como o famoso Hubble.'
+  },
+  {
+    id: 36, category: 'Astronomia',
+    question: 'Qual planeta tem o ano mais longo do Sistema Solar?',
+    options: ['Saturno', 'Júpiter', 'Urano', 'Netuno', 'Marte'],
+    correct: 3,
+    explanation: 'Netuno tem o ano mais longo: 60.190 dias terrestres! Isso equivale a quase 165 anos da Terra.'
+  },
+  {
+    id: 37, category: 'Astronomia',
+    question: 'Qual planeta tem uma enorme Mancha Vermelha — uma tempestade gigante?',
+    options: ['Marte', 'Saturno', 'Netuno', 'Júpiter', 'Urano'],
+    correct: 3,
+    explanation: 'A Grande Mancha Vermelha de Júpiter é uma tempestade que dura há centenas de anos. Ela é maior que a própria Terra!'
+  },
+  {
+    id: 38, category: 'Astronomia',
+    question: 'Quantas luas Marte tem?',
+    options: ['0', '1', '2', '4', '7'],
+    correct: 2,
+    explanation: 'Marte tem 2 luas: Fobos e Deimos. São bem pequenas, parecidas com asteroides capturados pela gravidade de Marte!'
+  },
+  {
+    id: 39, category: 'Astronomia',
+    question: 'O que é o ano de um planeta?',
+    options: [
+      'O tempo que ele gira ao redor do próprio eixo',
+      'O tempo que leva para dar uma volta completa ao redor do Sol',
+      'A quantidade de dias no seu calendário',
+      'O tempo de uma estação do ano nele',
+      'A sua idade em bilhões de anos'
+    ],
+    correct: 1,
+    explanation: 'O ano de um planeta é o tempo que ele leva para dar uma volta completa ao redor do Sol. O ano da Terra tem 365 dias!'
+  },
+  {
+    id: 40, category: 'Astronomia',
+    question: 'Qual é o planeta mais brilhante visto do céu noturno (depois da Lua)?',
+    options: ['Marte', 'Júpiter', 'Vênus', 'Sirius', 'Saturno'],
+    correct: 2,
+    explanation: "Vênus é o planeta mais brilhante no céu noturno! Às vezes é chamado de 'Estrela d'Alva' quando aparece ao anoitecer ou ao amanhecer."
+  },
+  {
+    id: 41, category: 'Astronomia',
+    question: 'Em qual fase da Lua toda a face iluminada fica visível da Terra?',
+    options: ['Lua Nova', 'Quarto Crescente', 'Quarto Minguante', 'Lua Cheia', 'Lua Gibbosa'],
+    correct: 3,
+    explanation: 'Na Lua Cheia, toda a face iluminada da Lua fica voltada para a Terra. Por isso ela aparece como um círculo completo!'
+  },
+  {
+    id: 42, category: 'Astronomia',
+    question: 'Quais são os planetas rochosos do Sistema Solar?',
+    options: [
+      'Júpiter, Saturno, Urano e Netuno',
+      'Mercúrio, Vênus, Terra e Marte',
+      'Marte, Júpiter, Saturno e Urano',
+      'Terra, Marte, Júpiter e Saturno',
+      'Todos os oito planetas são rochosos'
+    ],
+    correct: 1,
+    explanation: 'Os planetas rochosos são Mercúrio, Vênus, Terra e Marte — os quatro mais próximos do Sol, com superfície sólida!'
+  },
+  {
+    id: 43, category: 'Astronomia',
+    question: 'De qual cor é o céu de Marte?',
+    options: ['Azul como o da Terra', 'Preto como o espaço', 'Alaranjado/avermelhado', 'Verde', 'Roxo'],
+    correct: 2,
+    explanation: 'O céu de Marte é alaranjado/avermelhado! Isso porque a poeira marciana contém partículas de ferro que tingem o céu dessa cor.'
+  },
+  {
+    id: 44, category: 'Astronomia',
+    question: 'No eclipse LUNAR, o que fica entre o Sol e a Lua?',
+    options: [
+      'A Lua fica entre o Sol e a Terra',
+      'Marte fica entre o Sol e a Lua',
+      'A Terra fica entre o Sol e a Lua',
+      'O Sol fica entre a Terra e a Lua',
+      'Júpiter bloqueia a Lua'
+    ],
+    correct: 2,
+    explanation: 'No eclipse lunar, a Terra fica entre o Sol e a Lua. A Lua entra na sombra da Terra e fica com uma cor avermelhada!'
+  },
+  {
+    id: 45, category: 'Astronomia',
+    question: 'Qual é o nome da linha imaginária no céu por onde o Sol parece se mover ao longo do ano?',
+    options: ['Equador celeste', 'Eclíptica', 'Meridiano', 'Horizonte', 'Zodíaco'],
+    correct: 1,
+    explanation: 'A Eclíptica é a linha imaginária no céu por onde o Sol parece se mover ao longo do ano. Os planetas também seguem aproximadamente esse caminho!'
+  },
+  {
+    id: 46, category: 'Astronáutica',
+    question: 'Em que ano o primeiro satélite artificial foi lançado ao espaço?',
+    options: ['1945', '1950', '1957', '1961', '1969'],
+    correct: 2,
+    explanation: 'O Sputnik 1, lançado pela União Soviética em 1957, foi o primeiro satélite artificial colocado em órbita da Terra!'
+  },
+  {
+    id: 47, category: 'Astronáutica',
+    question: 'Qual é o nome da estação espacial que orbita a Terra atualmente?',
+    options: ['Mir', 'Salyut', 'Estação Espacial Internacional (ISS)', 'Hubble', 'Apollo'],
+    correct: 2,
+    explanation: 'A ISS (Estação Espacial Internacional) orbita a Terra a cerca de 400 km de altura e é habitada por astronautas de vários países!'
+  },
+  {
+    id: 48, category: 'Astronáutica',
+    question: 'Qual é o nome do famoso telescópio espacial lançado em 1990?',
+    options: ['James Webb', 'Hubble', 'Kepler', 'Chandra', 'Spitzer'],
+    correct: 1,
+    explanation: 'O Telescópio Espacial Hubble foi lançado em 1990 e tirou fotos incríveis de galáxias, nebulosas e planetas distantes!'
+  },
+  {
+    id: 49, category: 'Astronáutica',
+    question: 'Qual missão levou o homem à Lua pela primeira vez?',
+    options: ['Apollo 7', 'Gemini', 'Saturn V', 'Apollo 11', 'Voyager 1'],
+    correct: 3,
+    explanation: 'A Apollo 11 levou os astronautas Armstrong e Aldrin à Lua em 20 de julho de 1969. Um momento histórico para a humanidade!'
+  },
+  {
+    id: 50, category: 'Astronáutica',
+    question: 'Por que a ponta do foguete deve ser fina e pontiaguda?',
+    options: [
+      'Para ficar mais bonito',
+      'Para caber na base de lançamento',
+      'Para diminuir a resistência do ar e ir mais longe',
+      'Para pesar menos',
+      'Para ser mais resistente ao calor'
+    ],
+    correct: 2,
+    explanation: 'A ponta fina e pontiaguda do foguete diminui a resistência do ar (arrasto), permitindo que ele corte o vento e chegue mais longe!'
+  },
 ]
 
+// ── Embaralhamento Fisher-Yates ──────────────────────────────────────
+const shuffle = (arr) => {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+
+const getQuestions = () => shuffle(ALL_QUESTIONS).slice(0, 20)
+
+// ── Estrelas decorativas ────────────────────────────────────────────
 const STAR_DATA = Array.from({ length: 55 }, (_, i) => ({
   id: i,
   top: (i * 17 + 7) % 100,
@@ -199,14 +479,16 @@ function StarField() {
   )
 }
 
+// ── Componente principal ────────────────────────────────────────────
 export default function SpaceQuiz() {
+  const [questions, setQuestions] = useState(() => getQuestions())
   const [current, setCurrent] = useState(0)
   const [selected, setSelected] = useState(null)
   const [score, setScore] = useState(0)
   const [done, setDone] = useState(false)
 
-  const q = QUESTIONS[current]
-  const progress = Math.round((current / QUESTIONS.length) * 100)
+  const q = questions[current]
+  const progress = Math.round((current / questions.length) * 100)
   const isCorrect = selected === q?.correct
 
   const choose = (idx) => {
@@ -216,12 +498,16 @@ export default function SpaceQuiz() {
   }
 
   const next = () => {
-    if (current + 1 >= QUESTIONS.length) setDone(true)
+    if (current + 1 >= questions.length) setDone(true)
     else { setCurrent(c => c + 1); setSelected(null) }
   }
 
   const restart = () => {
-    setCurrent(0); setSelected(null); setScore(0); setDone(false)
+    setQuestions(getQuestions())
+    setCurrent(0)
+    setSelected(null)
+    setScore(0)
+    setDone(false)
   }
 
   const getOptionClass = (idx) => {
@@ -238,13 +524,13 @@ export default function SpaceQuiz() {
     return 'letter'
   }
 
-  // ── End screen ─────────────────────────────────────────────────
+  // ── Tela final ────────────────────────────────────────────────────
   if (done) {
-    const pct = Math.round((score / QUESTIONS.length) * 100)
+    const pct = Math.round((score / questions.length) * 100)
     const starCount = pct >= 80 ? 3 : pct >= 50 ? 2 : 1
     const msgs = [
-      'Não desanime! Revise os assuntos e tente novamente.',
-      'Bom trabalho! Estude mais um pouco e vai arrasar!',
+      'Não desanime! Revise os assuntos e tente novamente — as questões mudam a cada rodada!',
+      'Bom trabalho! Estude mais um pouco e vai arrasar na próxima!',
       'Incrível! Você está pronto para a OBA!'
     ]
 
@@ -261,7 +547,7 @@ export default function SpaceQuiz() {
 
             <div className="score-box">
               <div className="score-number">
-                {score}<span className="score-denom">/{QUESTIONS.length}</span>
+                {score}<span className="score-denom">/{questions.length}</span>
               </div>
               <div className="score-pct">{pct}% de acertos</div>
             </div>
@@ -278,10 +564,11 @@ export default function SpaceQuiz() {
             </div>
 
             <p className="end-msg">{msgs[starCount - 1]}</p>
+            <p className="end-info">Banco com {ALL_QUESTIONS.length} questões · 20 sorteadas por rodada</p>
 
             <button className="restart-btn" onClick={restart}>
               <RefreshCw size={15} aria-hidden="true" />
-              Tentar novamente
+              Nova rodada
             </button>
           </div>
         </div>
@@ -289,7 +576,7 @@ export default function SpaceQuiz() {
     )
   }
 
-  // ── Quiz screen ─────────────────────────────────────────────────
+  // ── Tela do quiz ──────────────────────────────────────────────────
   return (
     <div className="app">
       <StarField />
@@ -308,7 +595,7 @@ export default function SpaceQuiz() {
 
         <div className="progress-wrap">
           <div className="progress-labels">
-            <span>Questão {current + 1} de {QUESTIONS.length}</span>
+            <span>Questão {current + 1} de {questions.length}</span>
             <span>{progress}%</span>
           </div>
           <div className="progress-bar" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
@@ -363,7 +650,7 @@ export default function SpaceQuiz() {
         {selected !== null && (
           <div className="next-wrap">
             <button className="next-btn" onClick={next}>
-              {current + 1 < QUESTIONS.length ? 'Próxima questão' : 'Ver resultado'}
+              {current + 1 < questions.length ? 'Próxima questão' : 'Ver resultado'}
               <ChevronRight size={16} aria-hidden="true" />
             </button>
           </div>
